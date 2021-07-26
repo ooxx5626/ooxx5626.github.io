@@ -36,9 +36,18 @@ computed: {
     }
   },
   methods: {
+    fetchVideoAndPlay() {
+      fetch(this.audio.src)
+      .then(response => response.blob())
+      .then(blob => {
+        video.srcObject = blob;
+        return video.play();
+      })
+    },
     play() {
       if (this.audio.paused) {
-        this.audio.play();
+        // this.audio.play();
+        this.fetchVideoAndPlay();
         this.isTimerPlaying = true;
       } else {
         this.audio.pause();
@@ -151,6 +160,7 @@ computed: {
       this.audio.currentTime = 0;
       this.audio.src = this.currentTrack.source;
       this.updateAslide();
+      this.audio.load();
       setTimeout(() => {
         if(this.isTimerPlaying) {
           this.audio.play();
