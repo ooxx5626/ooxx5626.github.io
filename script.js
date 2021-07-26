@@ -30,7 +30,7 @@ var vu = new Vue({
 computed: {
     lengthThumbPosition: function() {
       volume = (( (this.settings.length) / (this.settings.maxLength)))
-      console.log(volume)
+      // console.log(volume)
       this.audio.volume =volume  
       return volume*100;
     }
@@ -94,9 +94,9 @@ computed: {
     },
     updateVolumeBar(x) {
       let progress = this.$refs.progress;
-      console.log("x: "+x);
+      // console.log("x: "+x);
       let position = x - progress.offsetLeft;
-      console.log("position: "+position);
+      // console.log("position: "+position);
       let percentage = (100 * position) / progress.offsetWidth;
       if (percentage > 100) {
         percentage = 100;
@@ -104,9 +104,8 @@ computed: {
       if (percentage < 0) {
         percentage = 0;
       }
-      console.log("percentage: "+percentage);
+      // console.log("percentage: "+percentage);
      // this.VolumebarWidth = percentage + "%";
-      console.log("VolumebarWidth: "+VolumebarWidth);
     //   this.circleLeft = percentage + "%";
       this.audio.volume = percentage / 100;
     },
@@ -228,6 +227,8 @@ computed: {
       link.rel = "prefetch";
       link.href = element.cover;
       link.as = "image"
+      console.log(link)
+      console.log(element.cover)
       document.head.appendChild(link)
     }
   },
@@ -242,10 +243,6 @@ computed: {
   $.each(trackList, function(key, value) {
     var trackNumber = i,
         trackName = value.name
-        // trackDuration = value.duration;
-    // if (trackNumber.toString().length === 1) {
-    //     trackNumber = '0' + trackNumber;
-    // }
     i+=1
     $('#plList').append('<li> \
         <div class="plItem"> \
@@ -254,7 +251,7 @@ computed: {
         </div> \
     </li>');
   })
-$('#plList li').on('click', function () {
+$('#plList li').on('click', function () { 
   var id = parseInt($(this).index());
   if (id !== vu.currentTrackIndex  ) {
     vu.specialTrack(id);

@@ -32,7 +32,7 @@ body {
 }
 
 .player {
-  background: #eef3f7;
+  background: #ffffff87;
   width: 410px;
   min-height: 480px;
   box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
@@ -261,7 +261,7 @@ body {
   height: 6px;
   width: 100%;
   cursor: pointer;
-  background-color: #d0d8e6;
+  background-color: #ffffffb3;
   display: inline-block;
   border-radius: 10px;
 }
@@ -269,25 +269,10 @@ body {
 .progress__current {
   height: inherit;
   width: 0%;
-  background-color: #a3b3ce;
+  background-color: #616b7c7d;
   border-radius: 10px;
 }
 
-.volume__bar {
-  height: 6px;
-  width: 100%;
-  cursor: pointer;
-  background-color: #d0d8e6;
-  display: inline-block;
-  border-radius: 10px;
-}
-
-.volume__current {
-  height: inherit;
-  width: 0%;
-  background-color: #a3b3ce;
-  border-radius: 10px;
-}
 
 .album-info {
   color: #71829e;
@@ -400,9 +385,22 @@ body {
   opacity: 0;
 }
 
+.progress__volume{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10px;
+}
 
-
-
+.volume-title{
+  padding-right: 10px;
+  margin: 10px 0 20px;
+  font-size: 20px;
+  color: #71829e;
+  opacity: 0.7;
+  font-weight: 700;
+}
 
 
 
@@ -415,7 +413,7 @@ body {
 .range-slider {
   -webkit-appearance: none;
   appearance: none;
-  background: white;
+  background: #ffffffb3;
   width: 100%;
   border-radius: 3px;
   vertical-align: bottom;
@@ -433,7 +431,7 @@ body {
   position: relative;
   width: 4px;
   height: 15px;
-  background-color: #bfcadd;
+  background-color: #98a1b2d4;
 }
 
 .range-slider::-moz-range-thumb {
@@ -444,7 +442,7 @@ body {
   position: relative;
   width: 4px;
   height: 15px;
-  background-color: #bfcadd;
+  background-color: #98a1b2d4;
 }
 
 .range-slider:focus {
@@ -480,7 +478,7 @@ input::-moz-focus-outer {
   height: 6px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
-  background: #d0d8e6;
+  background: #616b7c7d;
   left: 0;
   bottom: 0;
   pointer-events: none;

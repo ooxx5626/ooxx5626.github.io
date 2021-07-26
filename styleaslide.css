@@ -22,18 +22,18 @@ button:focus {
     background-position: 50%;
     filter: blur(60px);
     -webkit-filter: blur(60px);
-	/* z-index: 1; */
+	z-index: -1;
 	transform: scale(1.2);
-	opacity:0.7;
+	opacity:0.5;
 }
 .asideMenu {
 	overflow: hidden;
-	width: 300px;
-	/* background-color: #47474785; */
+	width: 30%;
+	background-color: #4747471c;
 	position: absolute;
-	top: 0;
+	top: 1%;
 	bottom: 0;
-	right: 0;
+	right: 0.5%;
 	/* border-left: 5px solid #ff9a15; */
 	padding: 20px;
 	box-shadow: 0 0 10px rgba(23, 23, 54, 0.6);
@@ -43,7 +43,7 @@ button:focus {
 }
 
 .asideMenu.active {
-	transform: translateX(295px);
+	transform: translateX(100%);
 }
 
 .asideMenu .btn {
@@ -142,3 +142,32 @@ button:focus {
 	cursor:default !important;
 	}
 	
+
+	/* Customize website's scrollbar like Mac OS
+Not supports in Firefox and IE */
+
+/* total width */
+.scrollbar::-webkit-scrollbar {
+
+    width:6px
+}
+
+/* scrollbar itself */
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius:16px;
+    border:6px solid #ffffff91
+}
+.scrollbar::-webkit-scrollbar-thumb:hover {
+    border:9px solid #ffffff91
+}
+
+/* set button(top and bottom of the scrollbar) */
+.scrollbar::-webkit-scrollbar-button {display:none}
+
+/* div box */
+body{background-color:#babac0}
+.scrollbar {
+    height: 98%;
+    min-width: 150px;
+    overflow-y: scroll}
+.overflow{min-height: 100vh}
