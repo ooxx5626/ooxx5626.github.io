@@ -25,9 +25,9 @@ tag = document.location.hash.split("#")[1]
 function m(x){
   r={}
   r["name"] = mapping[x]['title']
-  r["source"] = "music/"+mapping[x]['id']+".mp3",
-  r["cover"] = "thumbnail/"+mapping[x]['id']+".jpg",
-  r["favorited"] = "False",
+  r["source"] = "music/"+mapping[x]['id']+".mp3"
+  r["cover"] = "thumbnail/"+mapping[x]['id']+".jpg"
+  r["favorited"] = "False"
   r["artist"] =  ""
   return r
 }
