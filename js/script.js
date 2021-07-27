@@ -18,7 +18,6 @@ ntrackList = [{name:"",source:"",cover:"",favorited:"",artist:""}]
 function settracks(){
   ntrackList = trackList.map(x =>m(x))
   vu.tracks = ntrackList
-  vu.init()
 }
 tag = document.location.hash.split("#")[1]
 {
@@ -39,7 +38,6 @@ tag = document.location.hash.split("#")[1]
       settracks()
     });
   }
-    
 }
 var vu = new Vue({
   el: "#app",
@@ -262,7 +260,10 @@ computed: {
         this.left = event.layerX
         bar.onmousemove = null
       }
-    }
+    },
+    init(){
+      this.currentTrack = this.tracks[0];
+    }  
   },
   created() {
     let vm = this;
@@ -293,10 +294,6 @@ computed: {
       document.head.appendChild(link)
     }
   },
-  init(){
-    this.currentTrack = this.tracks[0];
-  },
-
   mounted: function () {
       this.play,
       this.specialTrack,
