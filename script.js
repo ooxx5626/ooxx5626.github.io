@@ -32,8 +32,6 @@ function m(x){
   return r
 }
 ntrackList = [{name:"",source:"",cover:"",favorited:"",artist:""}]
-ntrackList = trackList.map(x =>m(x))
-
 var vu = new Vue({
   el: "#app",
   data() {
@@ -69,12 +67,13 @@ computed: {
       try {
         var request = new XMLHttpRequest();
         request.open("GET", this.currentTrack.source, true);
-        request.responseType = "blob"; 
+        request.responseType = "blob";
+        audio =  this.audio
         request.onload = function() {
           if (this.status == 200) {
-            this.audio.src = URL.createObjectURL(this.response);
-            this.audio.load();
-            this.audio.play();
+            audio.src = URL.createObjectURL(this.response);
+            audio.load();
+            audio.play();
           }
         }
         request.send();
@@ -305,6 +304,9 @@ computed: {
 //         </div> \
 //     </li>');
 //   })
+
+ntrackList = trackList.map(x =>m(x))
+vu.tracks = ntrackList 
 $('#plList li').on('click', function () { 
   var id = parseInt($(this).index());
   if (id !== vu.currentTrackIndex  ) {
