@@ -4,16 +4,35 @@ design: https://dribbble.com/shots/3533847-Mini-Music-Player
 I can't find any open music api or mp3 api so i have to download all musics as mp3 file.
 You can fork on github: https://github.com/muhammederdem/mini-player
 */
+tag = document.location.hash.split("#")[1]
+{
+  if(tag){
+    try{
+      $.get( "./data/"+tag+".js", function( data ) {
+        eval(data)
+      });
+    }catch{
+      $.get( "./data/fullPlaylist.js", function( data ) {
+        eval(data)
+      });}
+  }else{
+    $.get( "./data/fullPlaylist.js", function( data ) {
+      eval(data)
+    });
+  }
+}
 
-// $(document).ready(function(){
-//   var tag = window.location.hash.split('#')[1]
-//   var s = document.createElement("script");
-//   s.type = "text/javascript";
-//   s.src = "js/"+tag+".js";
-//   $("head").append(s);
-// })
-// var vu;
-
+function m(x){
+  r={}
+  r["name"] = mapping[x]['title']
+  r["source"] = "music/"+mapping[x]['id']+".mp3",
+  r["cover"] = "thumbnail/"+mapping[x]['id']+".jpg",
+  r["favorited"] = "False",
+  r["artist"] =  ""
+  return r
+}
+ntrackList = [{name:"",source:"",cover:"",favorited:"",artist:""}]
+ntrackList = trackList.map(x =>m(x))
 
 var vu = new Vue({
   el: "#app",
@@ -27,7 +46,7 @@ var vu = new Vue({
       duration: null,
       currentTime: null,
       isTimerPlaying: false,
-      tracks: trackList,
+      tracks: ntrackList,
       currentTrack: null,
       currentTrackIndex: 0,
       transitionName: null,
@@ -47,17 +66,30 @@ computed: {
   },
   methods: {
     fetchVideoAndPlay() {
-      fetch(this.audio.src)
-      .then(response => response.blob())
-      .then(blob => {
-        this.audio.srcObject = blob;
-        return this.audio.play();
-      })
+      try {
+        var request = new XMLHttpRequest();
+        request.open("GET", this.currentTrack.source, true);
+        request.responseType = "blob"; 
+        request.onload = function() {
+          if (this.status == 200) {
+            this.audio.src = URL.createObjectURL(this.response);
+            this.audio.load();
+            this.audio.play();
+          }
+        }
+        request.send();
+      } catch (error) {
+        this.audio.src = this.currentTrack.source;
+        this.audio.load();
+        this.audio.play();
+
+      }
     },
     play() {
       if (this.audio.paused) {
-        this.audio.play();
-        // this.fetchVideoAndPlay();
+        this.updateAslide();
+        // this.audio.play();
+        this.fetchVideoAndPlay();
         this.isTimerPlaying = true;
       } else {
         this.audio.pause();
@@ -168,17 +200,15 @@ computed: {
       this.barWidth = 0;
       this.circleLeft = 0;
       this.audio.currentTime = 0;
-      this.audio.src = this.currentTrack.source;
-      this.updateAslide();
-      this.audio.load();
-      setTimeout(() => {
-        if(this.isTimerPlaying) {
-          this.audio.play();
-        // this.fetchVideoAndPlay();
-        } else {
-          this.audio.pause();
-        }
-      }, 300);
+      // this.audio.src = this.currentTrack.source;
+      // this.audio.load();
+      if(this.isTimerPlaying) {
+        this.updateAslide();
+        // this.audio.play();
+      this.fetchVideoAndPlay();
+      } else {
+        this.audio.pause();
+      }
     },
     favorite() {
       this.tracks[this.currentTrackIndex].favorited = !this.tracks[
@@ -229,7 +259,7 @@ computed: {
     this.currentTrack = this.tracks[0];
     this.audio = new Audio();
     this.audio.src = this.currentTrack.source;
-    this.updateAslide();
+    // $('#plList li:eq(' + this.currentTrackIndex + ')').addClass('plSel');
     this.audio.ontimeupdate = function() {
       vm.generateTime();
     };
@@ -262,18 +292,18 @@ computed: {
   
   
 
-  var i = 0
-  $.each(trackList, function(key, value) {
-    var trackNumber = i,
-        trackName = value.name
-    i+=1
-    $('#plList').append('<li> \
-        <div class="plItem"> \
-            <span class="plNum">' + trackNumber + '.</span> \
-            <span class="plTitle">' + trackName + '</span> \
-        </div> \
-    </li>');
-  })
+//   var i = 0
+//   $.each(trackList, function(key, value) {
+//     var trackNumber = i,
+//         trackName = value.name
+//     i+=1
+//     $('#plList').append('<li> \
+//         <div class="plItem"> \
+//             <span class="plNum">' + trackNumber + '.</span> \
+//             <span class="plTitle">' + trackName + '</span> \
+//         </div> \
+//     </li>');
+//   })
 $('#plList li').on('click', function () { 
   var id = parseInt($(this).index());
   if (id !== vu.currentTrackIndex  ) {

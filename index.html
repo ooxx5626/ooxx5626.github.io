@@ -3,7 +3,9 @@
 
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="js/playlist4.js"></script>
+  <!-- <script src="data/playlist4.js"></script> -->
+  <script src="data/no_party.js"></script>
+  <script src="data/mapping.js"></script>
 
   <meta charset="UTF-8">
   <title>Mini Music Player</title>
@@ -80,14 +82,27 @@
       <div v-cloak></div>
     </div>
 
+    <div class="asideMenu active scrollbar" style="display: none;">
+        <!-- <button class="btn"><i class="fas fa-chevron-right fa-2x"></i></button> -->
+        <div id="plwrap">
+          <ul id="plList">
+            
+            <li v-for="(val,index) in ntrackList">
+              <div class="plItem">
+                  <span class="plNum">{{index+1}}.</span>
+                  <span class="plTitle">{{val.name}}</span> 
+              </div>
+            </li>
+            
+              <!-- <div class="player-cover__item" v-if="$index === currentTrackIndex"
+              :style="{ backgroundImage: `url('${track.cover}')` }" v-for="(track, $index) in tracks" :key="$index">
+            </div> -->
+          </ul>
+        </div>
+      </div>
   </div>
 
-  <div class="asideMenu active scrollbar" style="display: none;">
-    <!-- <button class="btn"><i class="fas fa-chevron-right fa-2x"></i></button> -->
-    <div id="plwrap">
-      <ul id="plList"></ul>
-    </div>
-  </div>
+  
 
   <svg xmlns="http://www.w3.org/2000/svg" hidden xmlns:xlink="http://www.w3.org/1999/xlink"style="display: none;">
     <defs>
