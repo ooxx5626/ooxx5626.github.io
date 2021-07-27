@@ -264,7 +264,7 @@ computed: {
     },
     init(){
       this.currentTrack = this.tracks[0];
-      resetPlayer()
+      this.resetPlayer()
     }  
   },
   created() {

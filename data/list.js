@@ -4,5 +4,8 @@
 },{
     "name": "no_party",
     "url": "https://www.youtube.com/playlist?list=OLAK5uy_nOXUalzwOni3tKfG6gurzhvS_u3IaXYi0"
+},{
+    "name": "lin",
+    "url": "https://www.youtube.com/playlist?list=PLikFZN9SxDcnM6vbRAYfSewsO46Notg2i&index=1"
 }
 ]
