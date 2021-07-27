@@ -50,8 +50,8 @@ computed: {
       fetch(this.audio.src)
       .then(response => response.blob())
       .then(blob => {
-        video.srcObject = blob;
-        return video.play();
+        this.audio.srcObject = blob;
+        return this.audio.play();
       })
     },
     play() {
