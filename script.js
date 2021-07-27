@@ -4,23 +4,6 @@ design: https://dribbble.com/shots/3533847-Mini-Music-Player
 I can't find any open music api or mp3 api so i have to download all musics as mp3 file.
 You can fork on github: https://github.com/muhammederdem/mini-player
 */
-tag = document.location.hash.split("#")[1]
-{
-  if(tag){
-    try{
-      $.get( "./data/"+tag+".js", function( data ) {
-        eval(data)
-      });
-    }catch{
-      $.get( "./data/fullPlaylist.js", function( data ) {
-        eval(data)
-      });}
-  }else{
-    $.get( "./data/fullPlaylist.js", function( data ) {
-      eval(data)
-    });
-  }
-}
 
 function m(x){
   r={}
@@ -32,6 +15,31 @@ function m(x){
   return r
 }
 ntrackList = [{name:"",source:"",cover:"",favorited:"",artist:""}]
+function settracks(){
+  ntrackList = trackList.map(x =>m(x))
+  vu.tracks = ntrackList 
+}
+tag = document.location.hash.split("#")[1]
+{
+  if(tag){
+    try{
+      $.get( "./data/"+tag+".js", function( data ) {
+        eval(data)
+        settracks()
+      });
+    }catch{
+      $.get( "./data/fullPlaylist.js", function( data ) {
+        eval(data)
+        settracks()
+      });}
+  }else{
+    $.get( "./data/fullPlaylist.js", function( data ) {
+      eval(data)
+      settracks()
+    });
+  }
+    
+}
 var vu = new Vue({
   el: "#app",
   data() {
@@ -65,6 +73,8 @@ computed: {
   methods: {
     fetchVideoAndPlay() {
       try {
+        audio.src = this.currentTrack.source;
+        audio.load();
         var request = new XMLHttpRequest();
         request.open("GET", this.currentTrack.source, true);
         request.responseType = "blob";
@@ -305,8 +315,6 @@ computed: {
 //     </li>');
 //   })
 
-ntrackList = trackList.map(x =>m(x))
-vu.tracks = ntrackList 
 $('#plList li').on('click', function () { 
   var id = parseInt($(this).index());
   if (id !== vu.currentTrackIndex  ) {
