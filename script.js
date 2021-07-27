@@ -286,7 +286,8 @@ computed: {
 
   mounted: function () {
       this.play,
-      this.specialTrack
+      this.specialTrack,
+      this.updateAslide
   }
 });
   
