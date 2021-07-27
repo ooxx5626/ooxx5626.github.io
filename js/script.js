@@ -17,7 +17,8 @@ function m(x){
 ntrackList = [{name:"",source:"",cover:"",favorited:"",artist:""}]
 function settracks(){
   ntrackList = trackList.map(x =>m(x))
-  vu.tracks = ntrackList 
+  vu.tracks = ntrackList
+  vu.init()
 }
 tag = document.location.hash.split("#")[1]
 {
@@ -292,11 +293,15 @@ computed: {
       document.head.appendChild(link)
     }
   },
+  init(){
+    this.currentTrack = this.tracks[0];
+  },
 
   mounted: function () {
       this.play,
       this.specialTrack,
-      this.updateAslide
+      this.updateAslide,
+      this.init
   }
 });
   
