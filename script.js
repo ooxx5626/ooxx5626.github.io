@@ -56,8 +56,8 @@ computed: {
     },
     play() {
       if (this.audio.paused) {
-        // this.audio.play();
-        this.fetchVideoAndPlay();
+        this.audio.play();
+        // this.fetchVideoAndPlay();
         this.isTimerPlaying = true;
       } else {
         this.audio.pause();
@@ -174,6 +174,7 @@ computed: {
       setTimeout(() => {
         if(this.isTimerPlaying) {
           this.audio.play();
+        // this.fetchVideoAndPlay();
         } else {
           this.audio.pause();
         }
