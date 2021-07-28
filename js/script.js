@@ -272,6 +272,13 @@ computed: {
     },
     init(){
       this.currentTrack = this.tracks[0];
+
+      $('#plList li').on('click', function () { 
+        var id = parseInt($(this).index());
+        if (id !== vu.currentTrackIndex  ) {
+          vu.specialTrack(id);
+        }
+      })
       this.resetPlayer()
     }  
   },
@@ -326,6 +333,13 @@ computed: {
 //         </div> \
 //     </li>');
 //   })
+
+// $('#plList li').on('click', function () { 
+//   var id = parseInt($(this).index());
+//   if (id !== vu.currentTrackIndex  ) {
+//     vu.specialTrack(id);
+//   }
+// })
 
 // loadTrack = function (id) {
 //   $('.plSel').removeClass('plSel');
