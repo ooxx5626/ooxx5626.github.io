@@ -307,28 +307,27 @@ try{
       console.log("test1")
       $.get( "./data/"+tag+".js", function( data ) {
         eval(data)
+        settracks()
       });
     }catch(err){
       console.log("test2")
       console.log("err0: "+err)
       $.get( "./data/fullPlaylist.js", function( data ) {
         eval(data)
+        settracks()
       });}
   }else{
     console.log("test3")
     $.get( "./data/fullPlaylist.js", function( data ) {
       eval(data)
+      settracks()
     });
   }
 }catch(err){
   console.log("test4")
   console.log("err1: "+err)
 
-}finally{
-  console.log("test5")
-  settracks()
 }
-  
 
 //   var i = 0
 //   $.each(trackList, function(key, value) {
