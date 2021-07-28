@@ -21,24 +21,27 @@ function settracks(){
   vu.init()
 }
 tag = document.location.hash.split("#")[1]
-{
+try{
   if(tag){
     try{
       $.get( "./data/"+tag+".js", function( data ) {
         eval(data)
-        settracks()
       });
-    }catch{
+    }catch(err){
+      console.log("err0: "+err)
       $.get( "./data/fullPlaylist.js", function( data ) {
         eval(data)
-        settracks()
       });}
   }else{
     $.get( "./data/fullPlaylist.js", function( data ) {
       eval(data)
-      settracks()
     });
   }
+}catch(err){
+  console.log("err1: "+err)
+
+}finally{
+  settracks()
 }
 var vu = new Vue({
   el: "#app",
@@ -88,6 +91,7 @@ computed: {
         }
         request.send();
       } catch (error) {
+        console.log("play error: "+error)
         this.audio.src = this.currentTrack.source;
         this.audio.load();
         this.audio.play();
@@ -240,14 +244,14 @@ computed: {
         }, 10);
       }
     },
-    selectTrack(){
-        var id = parseInt($(this).index());
-        console.log(id)
-        if (id !== vu.currentTrackIndex  ) {
-          vu.specialTrack(id);
-        }
-      }
-    ,
+    // selectTrack(){
+    //     var id = parseInt($(this).index());
+    //     console.log(id)
+    //     if (id !== vu.currentTrackIndex  ) {
+    //       vu.specialTrack(id);
+    //     }
+    //   }
+    // ,
     handleClick () {
       const event = window.event || arguments[0]
       this.left = event.layerX
