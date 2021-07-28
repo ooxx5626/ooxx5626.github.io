@@ -192,10 +192,10 @@ computed: {
       this.audio.currentTime = 0;
       // this.audio.src = this.currentTrack.source;
       // this.audio.load();
+      this.updateAslide();
       if(this.isTimerPlaying) {
-        this.updateAslide();
         // this.audio.play();
-      this.fetchVideoAndPlay();
+        this.fetchVideoAndPlay();
       } else {
         this.audio.pause();
       }
@@ -253,11 +253,11 @@ computed: {
     },
     init(){
       this.currentTrack = this.tracks[0];
-
       $('#plList li').on('click', function () { 
         var id = parseInt($(this).index());
-        if (id !== vu.currentTrackIndex  ) {
-          vu.specialTrack(id);
+        console.log(id)
+        if (id !== this.currentTrackIndex  ) {
+          this.specialTrack(id);
         }
       })
       this.resetPlayer()
