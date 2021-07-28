@@ -20,29 +20,6 @@ function settracks(){
   vu.tracks = ntrackList
   vu.init()
 }
-tag = document.location.hash.split("#")[1]
-try{
-  if(tag){
-    try{
-      $.get( "./data/"+tag+".js", function( data ) {
-        eval(data)
-      });
-    }catch(err){
-      console.log("err0: "+err)
-      $.get( "./data/fullPlaylist.js", function( data ) {
-        eval(data)
-      });}
-  }else{
-    $.get( "./data/fullPlaylist.js", function( data ) {
-      eval(data)
-    });
-  }
-}catch(err){
-  console.log("err1: "+err)
-
-}finally{
-  settracks()
-}
 var vu = new Vue({
   el: "#app",
   data() {
@@ -323,6 +300,29 @@ computed: {
   }
 });
   
+tag = document.location.hash.split("#")[1]
+try{
+  if(tag){
+    try{
+      $.get( "./data/"+tag+".js", function( data ) {
+        eval(data)
+      });
+    }catch(err){
+      console.log("err0: "+err)
+      $.get( "./data/fullPlaylist.js", function( data ) {
+        eval(data)
+      });}
+  }else{
+    $.get( "./data/fullPlaylist.js", function( data ) {
+      eval(data)
+    });
+  }
+}catch(err){
+  console.log("err1: "+err)
+
+}finally{
+  settracks()
+}
   
 
 //   var i = 0
