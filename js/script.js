@@ -221,8 +221,9 @@ computed: {
         }, 10);
       }
     },
-    selectTrack(){
+    selectTrack(event, index){
         var id = parseInt($(this).index());
+        var id = index;
         console.log(id)
         if (id !== vu.currentTrackIndex  ) {
           vu.specialTrack(id);
