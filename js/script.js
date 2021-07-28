@@ -45,7 +45,6 @@ var vu = new Vue({
 computed: {
     lengthThumbPosition: function() {
       volume = (( (this.settings.length) / (this.settings.maxLength)))
-      // console.log(volume)
       this.audio.volume =volume  
       return volume*100;
     }
@@ -69,7 +68,6 @@ computed: {
           }
           request.send();
         } catch (error) {
-          console.log("play error: "+error)
           this.audio.src = this.currentTrack.source;
           this.audio.load();
           this.audio.play();
@@ -141,9 +139,7 @@ computed: {
     },
     updateVolumeBar(x) {
       let progress = this.$refs.progress;
-      // console.log("x: "+x);
       let position = x - progress.offsetLeft;
-      // console.log("position: "+position);
       let percentage = (100 * position) / progress.offsetWidth;
       if (percentage > 100) {
         percentage = 100;
@@ -151,9 +147,6 @@ computed: {
       if (percentage < 0) {
         percentage = 0;
       }
-      // console.log("percentage: "+percentage);
-      // this.VolumebarWidth = percentage + "%";
-    //   this.circleLeft = percentage + "%";
       this.audio.volume = percentage / 100;
     },
     prevTrack() {
@@ -230,7 +223,6 @@ computed: {
     selectTrack(event, index){
         var id = parseInt($(this).index());
         var id = index;
-        console.log(id)
         if (id !== vu.currentTrackIndex  ) {
           vu.specialTrack(id);
         }
@@ -260,13 +252,6 @@ computed: {
     },
     init(){
       this.currentTrack = this.tracks[0];
-      // $('#plList li').on('click', function () { 
-      //   var id = parseInt($(this).index());
-      //   console.log(id)
-      //   if (id !== this.currentTrackIndex  ) {
-      //     this.specialTrack(id);
-      //   }
-      // })
       this.resetPlayer()
     }  
   },
@@ -294,8 +279,6 @@ computed: {
       link.rel = "prefetch";
       link.href = element.cover;
       link.as = "image"
-      // console.log(link)
-      // console.log(element.cover)
       document.head.appendChild(link)
     }
   },
@@ -313,20 +296,17 @@ try{
   if(protocol!= "file:"){
     if(tag){
       try{
-        console.log("test1")
         $.get( "./data/"+tag+".js", function( data ) {
           eval(data)
           settracks()
         });
       }catch(err){
-        console.log("test2")
         console.log("err0: "+err)
         $.get( "./data/fullPlaylist.js", function( data ) {
           eval(data)
           settracks()
         });}
     }else{
-      console.log("test3")
       $.get( "./data/fullPlaylist.js", function( data ) {
         eval(data)
         settracks()
