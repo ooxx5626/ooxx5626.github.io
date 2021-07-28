@@ -18,7 +18,7 @@ ntrackList = [{name:"",source:"",cover:"",favorited:"",artist:""}]
 function settracks(){
   ntrackList = trackList.map(x =>m(x))
   vu.tracks = ntrackList
-  // vu.init()
+  vu.init()
 }
 var vu = new Vue({
   el: "#app",
@@ -52,27 +52,33 @@ computed: {
   },
   methods: {
     fetchVideoAndPlay() {
-      try {
-        this.audio.src = this.currentTrack.source;
-        this.audio.load();
-        var request = new XMLHttpRequest();
-        request.open("GET", this.currentTrack.source, true);
-        request.responseType = "blob";
-        audio =  this.audio
-        request.onload = function() {
-          if (this.status == 200) {
-            audio.src = URL.createObjectURL(this.response);
-            audio.load();
-            audio.play();
+      if(protocol!= "file:"){
+        try {
+          this.audio.src = this.currentTrack.source;
+          this.audio.load();
+          var request = new XMLHttpRequest();
+          request.open("GET", this.currentTrack.source, true);
+          request.responseType = "blob";
+          audio =  this.audio
+          request.onload = function() {
+            if (this.status == 200) {
+              audio.src = URL.createObjectURL(this.response);
+              audio.load();
+              audio.play();
+            }
           }
+          request.send();
+        } catch (error) {
+          console.log("play error: "+error)
+          this.audio.src = this.currentTrack.source;
+          this.audio.load();
+          this.audio.play();
+  
         }
-        request.send();
-      } catch (error) {
-        console.log("play error: "+error)
+      }else{
         this.audio.src = this.currentTrack.source;
         this.audio.load();
         this.audio.play();
-
       }
     },
     play() {
@@ -296,33 +302,38 @@ computed: {
   mounted: function () {
       this.play,
       this.specialTrack,
-      this.updateAslide
-      // this.init()
+      this.updateAslide,
+      this.init
   }
 });
-  
+protocol = document.location.protocol
+
 tag = document.location.hash.split("#")[1]
 try{
-  if(tag){
-    try{
-      console.log("test1")
-      $.get( "./data/"+tag+".js", function( data ) {
-        eval(data)
-        settracks()
-      });
-    }catch(err){
-      console.log("test2")
-      console.log("err0: "+err)
+  if(protocol!= "file:"){
+    if(tag){
+      try{
+        console.log("test1")
+        $.get( "./data/"+tag+".js", function( data ) {
+          eval(data)
+          settracks()
+        });
+      }catch(err){
+        console.log("test2")
+        console.log("err0: "+err)
+        $.get( "./data/fullPlaylist.js", function( data ) {
+          eval(data)
+          settracks()
+        });}
+    }else{
+      console.log("test3")
       $.get( "./data/fullPlaylist.js", function( data ) {
         eval(data)
         settracks()
-      });}
+      });
+    }
   }else{
-    console.log("test3")
-    $.get( "./data/fullPlaylist.js", function( data ) {
-      eval(data)
-      settracks()
-    });
+    settracks()
   }
 }catch(err){
   console.log("test4")
