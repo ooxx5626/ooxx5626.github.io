@@ -53,8 +53,8 @@ computed: {
   methods: {
     fetchVideoAndPlay() {
       try {
-        audio.src = this.currentTrack.source;
-        audio.load();
+        this.audio.src = this.currentTrack.source;
+        this.audio.load();
         var request = new XMLHttpRequest();
         request.open("GET", this.currentTrack.source, true);
         request.responseType = "blob";
@@ -304,23 +304,28 @@ tag = document.location.hash.split("#")[1]
 try{
   if(tag){
     try{
+      console.log("test1")
       $.get( "./data/"+tag+".js", function( data ) {
         eval(data)
       });
     }catch(err){
+      console.log("test2")
       console.log("err0: "+err)
       $.get( "./data/fullPlaylist.js", function( data ) {
         eval(data)
       });}
   }else{
+    console.log("test3")
     $.get( "./data/fullPlaylist.js", function( data ) {
       eval(data)
     });
   }
 }catch(err){
+  console.log("test4")
   console.log("err1: "+err)
 
 }finally{
+  console.log("test5")
   settracks()
 }
   
