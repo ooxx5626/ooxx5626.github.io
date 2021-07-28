@@ -240,6 +240,14 @@ computed: {
         }, 10);
       }
     },
+    selectTrack(){
+        var id = parseInt($(this).index());
+        console.log(id)
+        if (id !== vu.currentTrackIndex  ) {
+          vu.specialTrack(id);
+        }
+      }
+    ,
     handleClick () {
       const event = window.event || arguments[0]
       this.left = event.layerX
@@ -318,14 +326,6 @@ computed: {
 //         </div> \
 //     </li>');
 //   })
-
-$('#plList li').on('click', function () { 
-  var id = parseInt($(this).index());
-  if (id !== vu.currentTrackIndex  ) {
-    vu.specialTrack(id);
-  }
-})
-
 
 // loadTrack = function (id) {
 //   $('.plSel').removeClass('plSel');
