@@ -18,7 +18,7 @@ ntrackList = [{name:"",source:"",cover:"",favorited:"",artist:""}]
 function settracks(){
   ntrackList = trackList.map(x =>m(x))
   vu.tracks = ntrackList
-  vu.init()
+  // vu.init()
 }
 var vu = new Vue({
   el: "#app",
@@ -221,14 +221,14 @@ computed: {
         }, 10);
       }
     },
-    // selectTrack(){
-    //     var id = parseInt($(this).index());
-    //     console.log(id)
-    //     if (id !== vu.currentTrackIndex  ) {
-    //       vu.specialTrack(id);
-    //     }
-    //   }
-    // ,
+    selectTrack(){
+        var id = parseInt($(this).index());
+        console.log(id)
+        if (id !== vu.currentTrackIndex  ) {
+          vu.specialTrack(id);
+        }
+      }
+    ,
     handleClick () {
       const event = window.event || arguments[0]
       this.left = event.layerX
@@ -253,13 +253,13 @@ computed: {
     },
     init(){
       this.currentTrack = this.tracks[0];
-      $('#plList li').on('click', function () { 
-        var id = parseInt($(this).index());
-        console.log(id)
-        if (id !== this.currentTrackIndex  ) {
-          this.specialTrack(id);
-        }
-      })
+      // $('#plList li').on('click', function () { 
+      //   var id = parseInt($(this).index());
+      //   console.log(id)
+      //   if (id !== this.currentTrackIndex  ) {
+      //     this.specialTrack(id);
+      //   }
+      // })
       this.resetPlayer()
     }  
   },
@@ -295,8 +295,8 @@ computed: {
   mounted: function () {
       this.play,
       this.specialTrack,
-      this.updateAslide,
-      this.init()
+      this.updateAslide
+      // this.init()
   }
 });
   
