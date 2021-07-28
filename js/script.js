@@ -296,7 +296,7 @@ computed: {
       this.play,
       this.specialTrack,
       this.updateAslide,
-      this.init
+      this.init()
   }
 });
   
