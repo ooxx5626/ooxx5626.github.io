@@ -146,7 +146,8 @@ body {
   font-size: 30px;
   padding: 5px;
   margin-bottom: 10px;
-  color: #acb8cc;
+  /* color: #acb8cc; */
+  color: #606d9d47;
   cursor: pointer;
   width: 50px;
   height: 50px;
@@ -160,7 +161,8 @@ body {
     font-size: 26px;
     padding: 5px;
     margin-right: 10px;
-    color: #acb8cc;
+    /* color: #acb8cc; */
+    color: #606d9d47;
     cursor: pointer;
     width: 40px;
     height: 40px;
@@ -223,6 +225,13 @@ body {
 }
 .player-controls__item.-favorite.active {
   color: red;
+}
+
+.player-controls__item.-xl:before {
+  display: none;
+}
+.player-controls__item.-random.active {
+  color: #00145dad;
 }
 
 [v-cloak] {

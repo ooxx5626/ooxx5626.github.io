@@ -45,7 +45,6 @@ button:focus {
 .asideMenu.active {
 	transform: translateX(100%);
 }
-
 .asideMenu .btn {
 	position: absolute;
 	top: 50%;

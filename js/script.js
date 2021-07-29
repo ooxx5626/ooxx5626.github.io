@@ -36,6 +36,7 @@ var vu = new Vue({
       currentTrack: null,
       currentTrackIndex: 0,
       transitionName: null,
+      random: false,
       settings: {
         maxLength: 100,
         length: 50,
@@ -171,6 +172,10 @@ computed: {
       } else {
         this.currentTrackIndex = 0;
       }
+      if(this.random){
+        r = Math.floor(Math.random() * this.tracks.length) 
+        this.currentTrackIndex = r;
+      }
       this.currentTrack = this.tracks[this.currentTrackIndex];
       this.resetPlayer();
     },
@@ -206,6 +211,10 @@ computed: {
       this.tracks[this.currentTrackIndex].favorited = !this.tracks[
         this.currentTrackIndex
       ].favorited;
+    },
+    clickRandom() {
+      this.random = !this.random
+
     },
     aslideList(){
         
