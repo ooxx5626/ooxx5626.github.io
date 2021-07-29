@@ -82,8 +82,11 @@ computed: {
     play() {
       if (this.audio.paused) {
         this.updateAslide();
-        // this.audio.play();
-        this.fetchVideoAndPlay();
+        if(this.duration){
+          this.audio.play();
+        }else{
+          this.fetchVideoAndPlay();
+        }
         this.isTimerPlaying = true;
       } else {
         this.audio.pause();
