@@ -234,6 +234,10 @@ body {
   color: #00145dad;
 }
 
+.player-controls__item.-repeat.active {
+  color: #00145dad;
+}
+
 [v-cloak] {
   display: none;
 }

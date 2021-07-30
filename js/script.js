@@ -37,6 +37,7 @@ var vu = new Vue({
       currentTrackIndex: 0,
       transitionName: null,
       random: false,
+      repeat: false,
       settings: {
         maxLength: 100,
         length: 50,
@@ -54,8 +55,8 @@ computed: {
     fetchVideoAndPlay() {
       if(protocol!= "file:"){
         try {
-          this.audio.src = this.currentTrack.source;
-          this.audio.load();
+          // this.audio.src = this.currentTrack.source;
+          // this.audio.load();
           var request = new XMLHttpRequest();
           request.open("GET", this.currentTrack.source, true);
           request.responseType = "blob";
@@ -164,13 +165,15 @@ computed: {
       this.currentTrack = this.tracks[this.currentTrackIndex];
       this.resetPlayer();
     },
-    nextTrack() {
+    nextTrack(e) {
       this.transitionName = "scale-out";
       this.isShowCover = false;
-      if (this.currentTrackIndex < this.tracks.length - 1) {
-        this.currentTrackIndex++;
-      } else {
-        this.currentTrackIndex = 0;
+      if(!this.repeat || e){
+        if (this.currentTrackIndex < this.tracks.length - 1) {
+          this.currentTrackIndex++;
+        } else {
+          this.currentTrackIndex = 0;
+        }
       }
       if(this.random){
         r = Math.floor(Math.random() * this.tracks.length) 
@@ -214,7 +217,11 @@ computed: {
     },
     clickRandom() {
       this.random = !this.random
-
+    },
+    clickRepeat() {
+      this.repeat = !this.repeat
+      if(this.random)
+        this.random = !this.random
     },
     aslideList(){
         

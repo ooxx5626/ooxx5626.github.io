@@ -30,11 +30,13 @@
           </transition-group>
         </div>
         <div class="player-controls">
-          <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
+            
+          <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite" style="display: none;">
             <svg class="icon">
               <use xlink:href="#icon-heart-o"></use>
             </svg>
           </div>
+
           <a :href="currentTrack.url" target="_blank" class="player-controls__item" @click="aslideList">
             <svg fill="currentColor" viewBox="0 0 15 15" class="icon" style="stroke-width: 1;">
               <path fill-rule="evenodd"
@@ -52,6 +54,14 @@
             </svg>
           </div>
 
+          <div class="player-controls__item -repeat" :class="{ active : repeat }" @click="clickRepeat">
+              <svg class="icon" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;">
+                <g>
+                  <path d="M76.8,256v-76.8c0.1-28.3,22.9-51.1,51.2-51.2h332.8c14.1,0,25.6-11.5,25.6-25.6c0-14.1-11.5-25.6-25.6-25.6l-332.8,0   c-56.6,0-102.4,45.8-102.4,102.4V256c0,14.1,11.5,25.6,25.6,25.6C65.3,281.6,76.8,270.1,76.8,256L76.8,256z M365.9,43.7l58.7,58.7   l-58.7,58.7c-10,10-10,26.2,0,36.2c10,10,26.2,10,36.2,0l76.8-76.8c4.8-4.8,7.5-11.4,7.5-18.1c0-6.7-2.7-13.3-7.5-18.1L402.1,7.5   c-10-10-26.2-10-36.2,0C355.9,17.5,355.9,33.7,365.9,43.7L365.9,43.7z"/>
+                  <path d="M435.2,256v76.8c-0.1,28.3-22.9,51.1-51.2,51.2H51.2c-14.1,0-25.6,11.5-25.6,25.6c0,14.1,11.5,25.6,25.6,25.6l332.8,0   c56.6,0,102.4-45.8,102.4-102.4V256c0-14.1-11.5-25.6-25.6-25.6S435.2,241.9,435.2,256L435.2,256z M146.1,468.3l-58.7-58.7   l58.7-58.7c10-10,10-26.2,0-36.2s-26.2-10-36.2,0l-76.8,76.8c-4.8,4.8-7.5,11.4-7.5,18.1c0,6.7,2.7,13.3,7.5,18.1l76.8,76.8   c10,10,26.2,10,36.2,0C156.1,494.5,156.1,478.3,146.1,468.3L146.1,468.3z"/>
+                </g>
+                </svg>
+          </div>
           <div class="player-controls__item -random" :class="{ active : random }" @click="clickRandom">
               <svg class="icon"  id="Capa_1" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;">
                 <g>
