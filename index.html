@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" style="overflow-x: hidden;overflow-y: hidden;">
-
+  
 <head>
   <link rel="shortcut icon" type="image/x-icon" href="icons/32/favicon.ico">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -9,7 +9,7 @@
   <script src="data/mapping.js"></script>
 
   <meta charset="UTF-8">
-  <title>Mini Music Player</title>
+  <title>PL Player-PLP</title>
   <link href="https://fonts.googleapis.com/css?family=Bitter:400,700&display=swap&subset=latin-ext" rel="stylesheet" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
@@ -22,6 +22,9 @@
   <div class="wrapper" id="app">
     <div class="player">
       <div class="player__top">
+          <div hi ><span>
+            <div class="hat" :class="{ active : repeat }"></div></span></div>
+
         <div class="player-cover">
           <transition-group :name="transitionName">
             <div class="player-cover__item" v-if="$index === currentTrackIndex"

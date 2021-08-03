@@ -238,6 +238,7 @@ body {
   color: #00145dad;
 }
 
+
 [v-cloak] {
   display: none;
 }
@@ -286,14 +287,13 @@ body {
   border-radius: 10px;
 }
 
-
 .album-info {
   color: #71829e;
   flex: 1;
   padding-right: 60px;
   user-select: none;
 }
-@media screen and (max-width: 576px), (max-height: 500px) {
+@media screen and (max-width: 576px) and  (max-height: 500px) {
   .album-info {
     padding-right: 30px;
   }
