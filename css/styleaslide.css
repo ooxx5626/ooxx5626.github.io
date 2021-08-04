@@ -48,19 +48,26 @@ button:focus {
 .hat.active {
 	transform: translate(25%,-40%);
 	animation: 1.7s hat_out;
+	opacity: 0;
 }
 
 
 @keyframes hat_out{
-	0% {transform: translate(0%,0%);}
-  50% {transform: translate(8%,-7%);}
-  100% {transform: translate(25%,-40%);}
+	0% {transform: translate(0%,0%);
+		opacity: 1;}
+  50% {transform: translate(8%,-7%);
+		opacity: 1;}
+  100% {transform: translate(25%,-40%);
+    opacity: 0;}
 }
 
+
+
 @keyframes hat_in{
-	0% {transform: translate(25%,-40%);}
-	25% {transform: translate(10%,-12%);}
-  50% {transform: translate(15%,-5%);}
+	0% {transform: translate(20%,-25%);
+		opacity: 0;}
+	25% {transform: translate(10%,-17%);opacity: 0.8;}
+  50% {transform: translate(15%,-5%);opacity: 1;}
   100% {transform: translate(0%,0%);}
 }
 
@@ -74,7 +81,7 @@ button:focus {
 	height: 100%;
 	margin-top: -223px;
 	margin-left: 57px;
-    animation: 2.5s hat_in;
+    animation: 2.8s hat_in;
 	/* transition: all 0.5s;
 	  transition-property: all;
 	  transition-duration: 0.5s;
